@@ -6,11 +6,8 @@ public class Serie {
 	
 	private ArrayList<Integer> couleurs;
 	
-	public Serie(Integer[] couleurs, int taille){
-		this.couleurs=new ArrayList<Integer>();
-		for(int i=0; i<taille; i++){
-			this.couleurs.add(couleurs[i]);
-		}
+	public Serie(ArrayList<Integer> couleurs){
+		this.couleurs=couleurs;
 	}
 	
 	public int getCouleur(int NumCouleur){
