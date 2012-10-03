@@ -15,7 +15,7 @@ public class Partie {
 	private ArrayList<Essai> essais;
 	private Serie serieMere;
 	
-	public Partie(boolean multi, boolean vide, int nbCouleurs, int nbLignes, int nbTrous){
+	public Partie(boolean multi, int nbCouleurs, int nbLignes, int nbTrous){
 		this.multi=multi;
 		this.nbCouleurs=nbCouleurs;
 		this.nbLignes=nbLignes;
@@ -46,10 +46,12 @@ public class Partie {
 		return s;
 	}
 	
-	public void nouvelEssai(Serie s){
-		essais.add(new Essai(s));
-		essais.get(essais.size()).soumettre(serieMere);
-		if(essais.get(essais.size()).getSerieJuste()) partieGagnee=true;
+	public void nouvelEssai(ArrayList<Integer> s1){
+		Serie s2 = new Serie(s1);
+		Essai essai = new Essai(s2);
+		essai.soumettre(serieMere);
+		essais.add(essai);
+		if(essai.getSerieJuste()) partieGagnee=true;
 		if(essais.size()==nbLignes) partiePerdue=true;
 	}
 	
@@ -59,6 +61,10 @@ public class Partie {
 	
 	public boolean getPartiePerdue(){
 		return partiePerdue;
+	}
+	
+	public ArrayList<Integer> getDerniersPions(){
+		return essais.get(essais.size()-1).getPions();
 	}
 	
 }
